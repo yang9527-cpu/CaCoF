@@ -1,0 +1,224 @@
+{
+  "name": "Oxford-IIIT Pet probability responses",
+  "file": "oxford_pets.npz",
+  "sha256": "65fc651779c3c66c8bd45dd3c8232174b776a507e9f71017b8b868b40fe40261",
+  "source_dataset": "Oxford-IIIT Pet",
+  "source_url": "https://www.robots.ox.ac.uk/~vgg/data/pets/",
+  "source_paper": {
+    "title": "Cats and Dogs",
+    "authors": [
+      "Omkar M. Parkhi",
+      "Andrea Vedaldi",
+      "Andrew Zisserman",
+      "C. V. Jawahar"
+    ],
+    "venue": "CVPR",
+    "year": 2012
+  },
+  "license": "CC-BY-SA-4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "source_image_copyright": "Copyright remains with the original image owners.",
+  "contents": "Precomputed named-class responses and evaluation annotations; original image pixels, visual embeddings and model weights are not included.",
+  "shape": [
+    7349,
+    5,
+    37
+  ],
+  "probability_dtype": "float64",
+  "axis_order": [
+    "sample",
+    "source",
+    "class"
+  ],
+  "labels": "Zero-based named class indices; evaluation only.",
+  "array_schema": {
+    "probabilities": {
+      "shape": [
+        7349,
+        5,
+        37
+      ],
+      "dtype": "float64",
+      "sha256": "4ba1e3fe2394a1132a6dfbbe6028145e0752f80f9ccc84755e478ac228c2afb1"
+    },
+    "labels": {
+      "shape": [
+        7349
+      ],
+      "dtype": "int64",
+      "sha256": "0e75dbd9e1a2935116f1d9718aeac232bf5123bbb868d328b004c1d12404c2b9"
+    },
+    "sample_ids": {
+      "shape": [
+        7349
+      ],
+      "dtype": "<U22",
+      "sha256": "14e64d91bd6a051e782c8375984f1de565b91dc0144664b89ada9759716c6ed6"
+    },
+    "class_names": {
+      "shape": [
+        37
+      ],
+      "dtype": "<U26",
+      "sha256": "ccc948f5fcdc78a185c48cca075b9f808261052b45541ad85e3e1af0f521cd7b"
+    },
+    "model_ids": {
+      "shape": [
+        5
+      ],
+      "dtype": "<U36",
+      "sha256": "e504137675b0a55d9eaa361d33f72f6f014d0bc23e845194b830c5e8a5f20902"
+    },
+    "model_revisions": {
+      "shape": [
+        5
+      ],
+      "dtype": "<U40",
+      "sha256": "39a7b4d907680faf5802acd8802dabf8d7a9547575324a2eb3814544e437a939"
+    },
+    "image_sha256": {
+      "shape": [
+        7349
+      ],
+      "dtype": "<U64",
+      "sha256": "18ddb2bd71fbb40eb89471ddfc2345d6c761388f96462f32192bcd771678d177"
+    },
+    "seeds": {
+      "shape": [
+        5
+      ],
+      "dtype": "int64",
+      "sha256": "148613e8faf72bcb99e825c25d18f8d47d07ece57921da15db2e9f87880efd90"
+    },
+    "train_indices": {
+      "shape": [
+        5,
+        5879
+      ],
+      "dtype": "int64",
+      "sha256": "981b5e6238b89d43ba3d31627ffdeabf8aa39acb7241bb04635a1d3cadc2ad52"
+    },
+    "test_indices": {
+      "shape": [
+        5,
+        1470
+      ],
+      "dtype": "int64",
+      "sha256": "d877c75dc5e4f227a04ced0dfe626a23f47d1be2bbf4be5f75624111e4d5a3df"
+    },
+    "original_splits": {
+      "shape": [
+        7349
+      ],
+      "dtype": "<U8",
+      "sha256": "0a0e3bfcd6b0d1ef1f23ddfa2b3ce2b414b95ac3ca29d8f24ba0b77487faeaea"
+    },
+    "image_paths": {
+      "shape": [
+        7349
+      ],
+      "dtype": "<U30",
+      "sha256": "7275b0d34bad9ca179faee0e345a26f3e43517767fb05bed4c24d803ae1c1966"
+    }
+  },
+  "score_definition": "Candidate-token mean log likelihood, followed by softmax over the fixed class vocabulary. These are candidate-normalized scores rather than calibrated class posteriors.",
+  "models": [
+    {
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+      "score_definition": "mean candidate token log P -> class softmax",
+      "protocol_sha256": "bc20aeaff7f92d89c130a0b54eac61eb4e9ff2a29a322e38c84ca4406c66e1ad",
+      "prompt_system": "You are an expert in cat and dog breed identification. Inspect the image carefully and determine its main category. Use visible evidence only.",
+      "prompt_user": "Identify the breed of the primary cat or dog using visible appearance.\n\nOutput only the category name directly.",
+      "vllm_expected_version": "0.12.0",
+      "candidate_batch_size": 4
+    },
+    {
+      "model": "openbmb/MiniCPM-V-4_5",
+      "revision": "daef484c35ec93210ec93c5e901f8f3e9b78ee34",
+      "score_definition": "mean candidate token log P -> class softmax",
+      "protocol_sha256": "b4a780acebee42a606e3093d2e5484cd3933e81e979cde2027c5d107570a0a06",
+      "prompt_system": "You are an expert in cat and dog breed identification. Inspect the image carefully and determine its main category. Use visible evidence only.",
+      "prompt_user": "Identify the breed of the primary cat or dog using visible appearance.\n\nOutput only the category name directly.",
+      "vllm_expected_version": "0.12.0",
+      "candidate_batch_size": 4
+    },
+    {
+      "model": "llava-hf/llava-v1.6-mistral-7b-hf",
+      "revision": "2424fdd47412fccc66d91719126b420e9fbd7065",
+      "score_definition": "mean candidate token log P -> class softmax",
+      "protocol_sha256": "a3027717c2c5412092688294d58baa00ca8b83d05700f415b062818fc1273a66",
+      "prompt_system": "You are an expert in cat and dog breed identification. Inspect the image carefully and determine its main category. Use visible evidence only.",
+      "prompt_user": "Identify the breed of the primary cat or dog using visible appearance.\n\nOutput only the category name directly.",
+      "vllm_expected_version": "0.12.0",
+      "candidate_batch_size": 4
+    },
+    {
+      "model": "microsoft/Phi-3.5-vision-instruct",
+      "revision": "12b77fb40b63a2c73c68243d3f767aab688a1b2a",
+      "score_definition": "mean candidate token log P -> class softmax",
+      "protocol_sha256": "1e4379fd5a2f6d561db913c5c2a61b2b1c699622f71b0e22dfd7c6c5ce94f7b5",
+      "prompt_system": "You are an expert in cat and dog breed identification. Inspect the image carefully and determine its main category. Use visible evidence only.",
+      "prompt_user": "Identify the breed of the primary cat or dog using visible appearance.\n\nOutput only the category name directly.",
+      "vllm_expected_version": "0.12.0",
+      "candidate_batch_size": 4
+    },
+    {
+      "model": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+      "revision": "482adb537c021c86670beed01cd58990d01e72e4",
+      "score_definition": "mean candidate token log P -> class softmax",
+      "protocol_sha256": "0032d344272ec564e4bfdb19658980ca76e28a4c8bf2585f8344ef65586a6b2a",
+      "prompt_system": "You are an expert in cat and dog breed identification. Inspect the image carefully and determine its main category. Use visible evidence only.",
+      "prompt_user": "Identify the breed of the primary cat or dog using visible appearance.\n\nOutput only the category name directly.",
+      "vllm_expected_version": "0.12.0",
+      "candidate_batch_size": 4
+    }
+  ],
+  "inductive_protocol": {
+    "seeds": [
+      2026,
+      2027,
+      2028,
+      2029,
+      2030
+    ],
+    "training_samples": 5879,
+    "test_samples": 1470,
+    "selection": "Saved unstratified random 80/20 partitions, identical to the paper; independent of labels.",
+    "splits": [
+      {
+        "seed": 2026,
+        "train_indices_sha256": "e8ada2edb9e9d6c3ac7036659be0b3280ab274a58a0692af6fbcbe79e34abb0b",
+        "test_indices_sha256": "991afbbfaf0fc46b977b4f8157690dd8f3f9f18d7abdd9bd5560dd26a9498f1b"
+      },
+      {
+        "seed": 2027,
+        "train_indices_sha256": "e0b2e4889a240435c06d6fef35ac4b7ff652697344477cbc7c32a28fad3bde70",
+        "test_indices_sha256": "312efa18c375eb5bb8bbf094a193aaea7ad41b5eaf6e7cdc29773194d4110679"
+      },
+      {
+        "seed": 2028,
+        "train_indices_sha256": "eae6764b794a0f3fb1e7f1d9f162d9a2ef0fa13644c7881e65038a35805681b0",
+        "test_indices_sha256": "4182447c67a192e275802d313ddfcf809d468a4a84688c8c8a6d0c85530c95f3"
+      },
+      {
+        "seed": 2029,
+        "train_indices_sha256": "741dec174c39633cb18c7eb61fec8ce66293ccabd1c7f28e589a656a6bc65c0d",
+        "test_indices_sha256": "7082b4058bcda694a1af66fe604ce56c74c09f12ba31cc1f14380d057a6b0a22"
+      },
+      {
+        "seed": 2030,
+        "train_indices_sha256": "25295e15f5ac99d9a933b945cd512dc8398d36569bdd497c2dfe17be1921beb3",
+        "test_indices_sha256": "ca8dc0ca303110a53236695f38c4bb0805dbef8e5b986c99856ccf54609fdac0"
+      }
+    ]
+  },
+  "transductive_protocol": "Fit on all 7349 probability rows without labels; evaluate on the same pool.",
+  "original_split_note": "The original trainval/test identifiers are retained for sample provenance. The paper uses the saved repeated 80/20 partitions, not the official supervised split.",
+  "sample_identity": "Sample IDs and relative image paths refer to the archived collection order; image SHA-256 values identify exact image bytes.",
+  "source_array_sha256": {
+    "probabilities": "4ba1e3fe2394a1132a6dfbbe6028145e0752f80f9ccc84755e478ac228c2afb1",
+    "labels": "0e75dbd9e1a2935116f1d9718aeac232bf5123bbb868d328b004c1d12404c2b9"
+  },
+  "transformations": "Renamed array keys and combined saved arrays into one NPZ. No probability, label, sample ordering, source ordering, class ordering or split index was changed."
+}
